@@ -1,0 +1,9 @@
+C:\Users\danii\source\repos\rasstanovka\bin\Debug\rasstanovka.exe.config
+C:\Users\danii\source\repos\rasstanovka\bin\Debug\rasstanovka.exe
+C:\Users\danii\source\repos\rasstanovka\bin\Debug\rasstanovka.pdb
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.csprojResolveAssemblyReference.cache
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.Properties.Resources.resources
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.csproj.GenerateResource.Cache
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.csproj.CoreCompileInputs.cache
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.exe
+C:\Users\danii\source\repos\rasstanovka\obj\Debug\rasstanovka.pdb
