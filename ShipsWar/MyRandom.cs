@@ -18,7 +18,7 @@ namespace ShipsWar
             for (var i = 0; i < length; i++)
                 for (var j = 0; j < length; j++)
                     list.Add(new Point(i, j));
-            x.Next(list.Count);
+            //x.Next(list.Count);
         }
         public Point Next()
         {

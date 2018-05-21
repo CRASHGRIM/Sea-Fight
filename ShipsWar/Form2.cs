@@ -100,9 +100,9 @@ namespace ShipsWar
                 Controls.Add(MakeCoordinateLabel(new Point(600 + i * 40, 60), Convert.ToString((char)(i + 65))));
 
 
-            game.FirstPlayer.SetPos += UpdatePointFirst;
+            game.FirstPlayer.SetPosition += UpdatePointFirst;
 
-            game.SecondPlayer.SetPos += UpdatePointOpponent;
+            game.SecondPlayer.SetPosition += UpdatePointOpponent;
             FUpdate();
         }
 

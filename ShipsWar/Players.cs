@@ -13,11 +13,11 @@ namespace ShipsWar
     {
         public Map Map;
         public  PlayerAI Opposite;
-        public virtual event Action<Point, State> SetPos;
+        public virtual event Action<Point, State> SetPosition;
         public Player(int size)
         {
             Map = new Map(size);
-            SetPos += Map.SetPos;
+            SetPosition += Map.SetPos;
         }
         public bool Shoot(Point pos)
         {
@@ -28,17 +28,17 @@ namespace ShipsWar
             switch (Map[pos]) {
                 case State.Empty:
                     {
-                        SetPos(pos, State.Shooting);
+                        SetPosition(pos, State.Shooting);
                         //Map[pos] = State.shooting;
                         return false;
                     }
                 case State.Ship:
                     {
                         Opposite.Map.CountDeadShips++;
-                        SetPos(pos, State.ShootedShip);
+                        SetPosition(pos, State.ShootedShip);
                         //Map[pos] = State.shootingShip;
                         Map.CountDeadShips++;
-                        if (Map.IsSheapDead(pos, new HashSet<Point>()))
+                        if (Map.IsShipDead(pos, new HashSet<Point>()))
                             ShipDead(pos);
                         return true;
                     }
@@ -49,15 +49,16 @@ namespace ShipsWar
 
         public void ShipDead(Point pos)
         {
-            SetPos(pos, State.KilledShip);
+            SetPosition(pos, State.KilledShip);
             var newdelta = Map.Delta.Concat(Map.DeltaD);
             foreach (var del in newdelta)
             {
                 var newpos = Map.SumPoint(pos, del);
                 if (Map[newpos] == State.ShootedShip)
                     ShipDead(newpos);
-                if (Map[newpos] == State.Empty)
-                    SetPos(newpos, State.Shooting);
+                else
+                    if (Map[newpos] == State.Empty)
+                        SetPosition(newpos, State.Shooting);
             }
 
         }
@@ -82,26 +83,27 @@ namespace ShipsWar
         public Player Opposite;
         private bool IsWounded = false;
         private Point OldTarget = Point.Empty;
-        public event Action<Point, State> SetPos;
+        public event Action<Point, State> SetPosition;
         static private MyRandomPoint RandomPoint;
         public PlayerAI(string stringMap) : base(stringMap.Length)
         {
             RandomPoint = new MyRandomPoint(ModelGame.Size);
             Map = new Map(stringMap);
-            SetPos += Map.SetPos;
+            SetPosition += Map.SetPos;
         }
 
         public void ShipDead(Point pos)
         {
-            SetPos(pos, State.KilledShip);
+            SetPosition(pos, State.KilledShip);
             var newdelta = Map.Delta.Concat(Map.DeltaD);
             foreach (var del in newdelta)
             {
-                var newpos = Map.SumPoint(pos, del);
-                if (Map[newpos] == State.ShootedShip)
-                    ShipDead(newpos);
-                if (Map[newpos] == State.Empty)
-                    SetPos(newpos, State.Shooting);
+                var newPosition = Map.SumPoint(pos, del);
+                if (Map[newPosition] == State.ShootedShip)
+                    ShipDead(newPosition);
+                else
+                    if (Map[newPosition] == State.Empty)
+                        SetPosition(newPosition, State.Shooting);
             }
 
         }
@@ -140,15 +142,15 @@ namespace ShipsWar
             {
                 case State.Empty:
                     {
-                        SetPos(pos, State.Shooting);
+                        SetPosition(pos, State.Shooting);
                         Shoot();
                         return false;
                     }
                 case State.Ship:
                     {
-                        SetPos(pos, State.ShootedShip);
+                        SetPosition(pos, State.ShootedShip);
                         Map.CountDeadShips++;
-                        if (Map.IsSheapDead(pos, new HashSet<Point>()))
+                        if (Map.IsShipDead(pos, new HashSet<Point>()))
                             ShipDead(pos);
                         return true;
                     }
@@ -158,10 +160,11 @@ namespace ShipsWar
 
         public bool IsLost()
         {
-            if (Map.AmountOfAliveShips == 0)
-                return true;
-            else
-                return false;
+            return Map.AmountOfAliveShips == 0;
+            //if (Map.AmountOfAliveShips == 0)
+            //    return true;
+            //else
+            //    return false;
         }
     }
 }

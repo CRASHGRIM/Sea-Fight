@@ -17,20 +17,20 @@ namespace ShipsWar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new ModelGame(secondMap1010)) { ClientSize = new Size(1000, 1000) });
+            Application.Run(new Form1(new ModelGame(AIMap)) { ClientSize = new Size(1000, 1000) });
         }
 
 
-        public const string secondMap1010 = @"
-****      
+        public const string AIMap = @"
+****     *
           
-          
-          
+    *     
+    *     
         **
+    *     
+ *  *  ***
           
- *        
-          
-          
-***       ";
+         *
+***   *   ";
     }
 }

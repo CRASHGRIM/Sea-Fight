@@ -71,7 +71,7 @@ namespace ShipsWar
         }
         
 
-        public bool IsSheapDead(Point pos, HashSet<Point> cheked)
+        public bool IsShipDead(Point pos, HashSet<Point> cheked)
         {
             cheked.Add(pos);
             foreach (var del in Delta)
@@ -86,7 +86,7 @@ namespace ShipsWar
                 if (!cheked.Contains(newpos))
                 {
                     if (this[newpos] == State.ShootedShip)
-                        return IsSheapDead(newpos, cheked);
+                        return IsShipDead(newpos, cheked);
                 }
             }
             
@@ -95,18 +95,18 @@ namespace ShipsWar
 
 
 
-        public int CountNeig(Point pos, State state)
-        {
-            var result = 0;
-            foreach (var del in Delta)
-            {
-                pos.X += del.X;
-                pos.Y += del.Y;
-                if (this[pos] == state)
-                    result++;
-            }
-            return result;
-        }
+        //public int CountNeighbors(Point pos, State state)
+        //{
+        //    var result = 0;
+        //    foreach (var del in Delta)
+        //    {
+        //        pos.X += del.X;
+        //        pos.Y += del.Y;
+        //        if (this[pos] == state)
+        //            result++;
+        //    }
+        //    return result;
+        //}
         public State this[Point pos]
         {
             get { return Location[pos.X, pos.Y]; }
