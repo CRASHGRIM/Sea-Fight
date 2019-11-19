@@ -10,3 +10,5 @@ underline tags
 _aaa_
 
 InterSection _aaa__bbb_ccc__
+
+InterSection2 __aaa_bbb__ccc_
